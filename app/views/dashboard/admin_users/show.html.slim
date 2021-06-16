@@ -42,3 +42,21 @@
                     .font-weight-base.mb-1 = AdminUser.human_attribute_name(:name)
                   .col-auto
                     = @admin_user.name
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    .font-weight-base.mb-1 = AdminUser.human_attribute_name(:age)
+                  .col-auto
+                    = @admin_user.age
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    .font-weight-base.mb-1 = AdminUser.human_attribute_name(:address)
+                  .col-auto
+                    = @admin_user.address
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    .font-weight-base.mb-1 = AdminUser.human_attribute_name(:phone)
+                  .col-auto
+                    = @admin_user.phone

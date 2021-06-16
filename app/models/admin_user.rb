@@ -3,4 +3,6 @@ class AdminUser < ApplicationRecord
          :trackable, :recoverable
 
   validates :email, presence: true
+
+  has_many :books
 end

@@ -9,5 +9,6 @@ en:
         new_record: New
         edit: Update
         show: Show
+        delete: Delete
       show:
         heading_sub: Details

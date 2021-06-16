@@ -36,6 +36,9 @@ ActiveRecord::Schema.define(version: 2021_06_16_144338) do
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "name"
+    t.integer "age"
+    t.string "address"
+    t.string "phone"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.string "encrypted_password", null: false
@@ -53,6 +56,15 @@ ActiveRecord::Schema.define(version: 2021_06_16_144338) do
   create_table "blacklisted_auth_tokens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.bigint "admin_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_user_id"], name: "index_books_on_admin_user_id"
   end
 
   create_table "refresh_auth_tokens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

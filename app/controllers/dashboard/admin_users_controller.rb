@@ -8,7 +8,29 @@ module Dashboard
       @admin_users = service.execute
     end
 
+    def edit; end
+
     def show; end
+
+    def update
+      respond_to do |format|
+        if @admin_user.update(admin_user_params)
+          format.html { redirect_to dashboard_admin_users_url, notice: 'AdminUser was successfully updated.' }
+          format.json { render :show, status: :ok, location: @admin_user }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: dashboard_admin_users_url.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
+    def destroy
+      @admin_user.destroy
+      respond_to do |format|
+        format.html { redirect_to dashboard_admin_users_url, notice: 'AdminUser was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    end
 
     def order_params(order, direction)
       params.merge(o: order, d: direction, page: params[:page]).permit(:o, :d, :page)
@@ -22,7 +44,7 @@ module Dashboard
 
     def admin_user_params
       params.require(:admin_user).permit(
-        :created_at, :updated_at, :email, :name, :password, :email
+        :created_at, :updated_at, :email, :name, :password, :email, :age, :address, :phone
       )
     end
   end

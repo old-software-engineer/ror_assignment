@@ -1,0 +1,46 @@
+.main-content
+  .container-fluid
+    .header
+      .header-body
+        .row.d-flex.justify-content-between
+          .col
+            .header-pretitle
+              h6 = t('.heading_sub')
+            h1.header-title = AdminUser.model_name.human
+          .mx-4.pt-2
+            = render 'breadcrumb', data: [{ text: 'AdminUsers', link: '/dashboard/admin_users' }, { text: 'View AdminUser', link: "/dashboard/admin_users/#{@admin_user.id}" }]
+
+    .row.justify-content-center
+      .col-12.col-lg-10.col-xl-8
+        .card
+          .card-header
+            h4.card-header-title = "Edit #{AdminUser.model_name.human}詳細情報"
+          .card-body
+            / = form_with model: @admin_user do |form|
+            = form_for(@admin_user, url: dashboard_admin_user_path, method: :put) do |form|
+              .form-row
+                .form-group.col-md-6
+                  label[for="name"]
+                    | #{AdminUser.human_attribute_name(:name)}
+                  = form.text_field :name, placeholder: "Title", class: "form-control", id: "name"
+                .form-group.col-md-6
+                  label[for="email"]
+                    | #{AdminUser.human_attribute_name(:email)}
+                  .datepicker.date.input-group.p-0.shadow-sm
+                    = form.email_field :email, placeholder: "E-mail", class: "form-control ", id: "email"
+              .form-row
+                .form-group.col-md-6
+                  label[for="name"]
+                    | #{AdminUser.human_attribute_name(:age)}
+                  = form.text_field :age, placeholder: "Age", class: "form-control", id: "age"
+                .form-group.col-md-6
+                  label[for="email"]
+                    | #{AdminUser.human_attribute_name(:phone)}
+                  .datepicker.date.input-group.p-0.shadow-sm
+                    = form.text_field :phone, placeholder: "Phone Number", class: "form-control ", id: "phone"
+              .form-group
+                label[for="notes"]
+                  | #{AdminUser.human_attribute_name(:address)}
+                = form.text_area :address, rows: 5, placeholder: "Title", class: "form-control", id: "notes"
+              .actions
+                = form.submit class: "btn btn-success"

@@ -72,4 +72,5 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'rswag'
 gem 'tzinfo-data', platforms: %w[mingw mswin x64_mingw jruby]
