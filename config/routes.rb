@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   devise_for :admin_users, controllers: {
     sessions: 'admin_users/sessions'
   }, skip: %w[registrations]
@@ -10,6 +12,11 @@ Rails.application.routes.draw do
   resources :admin_users, only: %w[#<WebFront:0x00007ffa4cf05750>]
 
   namespace :api do
+    namespace :v1 do
+      scope "/admin_user/:admin_user_id" do
+        resources :books
+      end
+    end
   end
 
   namespace :dashboard do
@@ -19,7 +26,7 @@ Rails.application.routes.draw do
       passwords: 'dashboard/admin_users/passwords'
     }, skip: %w[registrations]
 
-    resources :admin_users, only: %w[index show]
+    resources :admin_users, except: %w[new create]
   end
 
   get '*path' => redirect('/')
