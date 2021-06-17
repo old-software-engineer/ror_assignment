@@ -52,6 +52,5 @@ $(document).on('turbolinks:load', () => {
     }else{
       $('.notfound').show();
     }
-
   });
 })
